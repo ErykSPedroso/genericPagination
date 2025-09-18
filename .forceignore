@@ -1,0 +1,7 @@
+# Ignore typical files
+**/*.svg
+**/*.png
+**/*.jpg
+**/*.jpeg
+**/*.gif
+**/.DS_Store

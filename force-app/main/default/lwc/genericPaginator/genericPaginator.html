@@ -1,0 +1,46 @@
+<template>
+    <lightning-card title={title} icon-name="utility:list">
+        <div class="slds-p-around_small">
+            <div class="slds-grid slds-wrap slds-var-mb_small">
+                <div class="slds-col slds-size_1-of-2 slds-p-around_x-small">
+                    <span class="slds-text-title">Total:</span>
+                    <span class="slds-text-title_bold slds-m-left_x-small">{total}</span>
+                </div>
+                <div class="slds-col slds-size_1-of-2 slds-text-align_right slds-p-around_x-small">
+                    <lightning-combobox
+                        name="pageSize"
+                        label="Itens por página"
+                        value={pageSize}
+                        options={pageSizeOptions}
+                        class="slds-m-right_small"
+                        onchange={handlePageSizeChange}>
+                    </lightning-combobox>
+
+                    <lightning-button-icon icon-name="utility:chevronleft" alternative-text="Anterior"
+                        onclick={handlePrev} disabled={disablePrev} class="slds-m-right_x-small">
+                    </lightning-button-icon>
+
+                    <lightning-button-icon icon-name="utility:chevronright" alternative-text="Próxima"
+                        onclick={handleNext} disabled={disableNext}>
+                    </lightning-button-icon>
+                </div>
+            </div>
+
+            <div class="slds-is-relative">
+                <template if:true={isLoading}>
+                    <lightning-spinner alternative-text="Carregando" size="small"></lightning-spinner>
+                </template>
+                <lightning-datatable
+                    key-field="Id"
+                    data={rows}
+                    columns={columns}
+                    default-sort-direction={sortDirectionLower}
+                    sorted-by={sortBy}
+                    sorted-direction={sortDirectionLower}
+                    onsort={handleSort}
+                    hide-checkbox-column>
+                </lightning-datatable>
+            </div>
+        </div>
+    </lightning-card>
+</template>
